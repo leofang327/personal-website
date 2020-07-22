@@ -43,7 +43,7 @@ jobs:
 
       - name: Push changes to leofang327.github.io
         if: ${{ github.repository == 'leofang327/personal-website' && github.ref == 'refs/heads/master' }}
-        uses: X-lab2017/github-push-action@master
+        uses: leofang327/github-push-action@master
         with:
           github_token: ${{ secrets.TARGET_REPO_GITHUB_TOKEN }}
           branch: master
