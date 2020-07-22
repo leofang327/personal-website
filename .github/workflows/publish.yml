@@ -1,0 +1,53 @@
+name: Publish Github Pages
+
+on: [push, pull_request]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.71.1'
+          extended: true
+
+      - name: Build
+        run: hugo
+
+      - name: Commit files
+        if: ${{ github.repository == 'leofang327/personal-website' && github.ref == 'refs/heads/master' }}
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git clone https://github.com/leofang327/leofang327.github.io.git public_temp.git
+          mv public_temp.git/.git public/.git
+          cd ./public
+          git add .
+          git status
+          git status -b
+          GIT_CLEAN=$(git status -s)
+          if [ ${#GIT_CLEAN} -eq 0 ]; then
+            echo "Working tree clean, do not need commit."
+          else
+            git commit -m "${{ github.event.head_commit.message }}"
+          fi
+
+      - name: Push changes to leofang327.github.io
+        if: ${{ github.repository == 'leofang327/personal-website' && github.ref == 'refs/heads/master' }}
+        uses: X-lab2017/github-push-action@master
+        with:
+          github_token: ${{ secrets.TARGET_REPO_GITHUB_TOKEN }}
+          branch: master
+          force: true
+          tags: false
+          directory: ./public
+          repository: leofang327/leofang327.github.io

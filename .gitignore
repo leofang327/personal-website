@@ -1,6 +1,10 @@
 # IDEs
 .idea/
+.vs/
 
 # Hugo
 resources/
 public/
+
+themes/
+.DS_Store
