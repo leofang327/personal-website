@@ -2,7 +2,7 @@
 
  Personal website of leofang, you can view the site on http://leofang.cn.
 
- ![avatar](./assets/images/Eminem.jpeg)
+ ![avatar](./assets/images/wechat.jpeg)
 
 ## Prerequisites
 
