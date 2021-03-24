@@ -1,7 +1,7 @@
 ---
 # Documentation: https://sourcethemes.com/academic/docs/managing-content/
 
-title: "利用 Dcoker 完成项目的 CI/CD"
+title: "利用 Docker 完成项目的 CI/CD"
 subtitle: "Realize CI/CD in projects with docker"
 summary: "Realize CI/CD in projects with docker"
 authors: ["fangxiaojun"]
@@ -480,4 +480,22 @@ docker-compose -f ./docker-compose.yml up -d --build
 该命令可以自动完成包括构建镜像，(重新)创建服务，启动服务，并关联服务相关容器的一系列操作。
 
 至此，我们已经实现了项目的CI/CD，可以通过向项目push代码触发pipeline来测试整个流程。
+
+# Appendix:
+
+- 查看宿主机下所有容器：
+
+```bash
+docker ps -a
+```
+
+- 停止所有容器：
+```bash
+docker stop $(docker ps -aq)
+```
+
+- 清除所有容器
+```bash
+docker rm $(docker ps -aq)
+```
 
