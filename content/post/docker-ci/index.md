@@ -72,9 +72,11 @@ docker 利用容器来运行应用：docker容器是由docker镜像创建的运�
 # Domains
 
 - **CI机**：需要安装 `docker` 和 `gitlab-runner`。
-- **服务机**：需要安装 `git` 、 `docker` 和 `docker-compose`。
+- **服务机**：需要安装 `docker` 和 `docker-compose`。
 - **Gitlab**：用于在云端存储项目，并且需要在项目中设置 `环境变量` 与 `gitlab-runner`。
 - **阿里云容器镜像服务**：需要使用云商提供的容器镜像服务来构建 `远程镜像仓库`，本文以阿里云为例。
+
+![overview](./13.png)
 
 # Steps
 
